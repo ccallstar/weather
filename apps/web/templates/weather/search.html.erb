@@ -1,0 +1,26 @@
+<h2>Search Results</h2>
+
+<% unless params.valid? %>
+  <div class="errors">
+    <h3>There was a problem with your submission</h3>
+    <ul>
+      <% params.error_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% else %>
+	<% if cities.count > 0 %>
+	  <div id="cities">
+	  	<p class="placeholder">Duplicate cities found</p>
+	    <% cities.each do |city| %>
+	      <div class="city">
+	        <h2><%= city.name %></h2>
+	        <p><%= city.id %></p>
+	      </div>
+	    <% end %>
+	  </div>
+	<% else %>
+	  <p class="placeholder">Failed to find city named.</p>
+	<% end %>
+<% end %>
