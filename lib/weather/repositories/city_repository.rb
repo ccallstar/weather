@@ -4,8 +4,8 @@ class CityRepository < Hanami::Repository
     cities.count
   end
 
-  def find_by_name(name)
-    cities.where(name: name)
+  def find_by_name(city_name)
+    cities.where{ name.ilike("%?%", city_name) }
   end
 
 end

@@ -1,8 +1,6 @@
-<h2>Search Results</h2>
-
 <% unless params.valid? %>
   <div class="errors">
-    <h3>There was a problem with your submission</h3>
+    <p class="alert alert-danger" role="alert">There was a problem with your submission</p>
     <ul>
       <% params.error_messages.each do |message| %>
         <li><%= message %></li>
@@ -12,15 +10,16 @@
 <% else %>
 	<% if cities.count > 0 %>
 	  <div id="cities">
-	  	<p class="placeholder">Duplicate cities found</p>
+	  	<p class="alert alert-warning" role="alert">Duplicate cities found! Please select a specific location:</p>
 	    <% cities.each do |city| %>
-	      <div class="city">
-	        <h2><%= city.name %></h2>
-	        <p><%= city.id %></p>
-	      </div>
+	      <ul class="city">
+	        <li><a href="/weather/temperature?id=<%= city.id %>"><%= city.name %> <%= city.latitude %>,<%= city.longitude %></a></li>
+	      </ul>
 	    <% end %>
 	  </div>
 	<% else %>
-	  <p class="placeholder">Failed to find city named.</p>
+
+	  <p class="alert alert-danger" role="alert">Failed to find city named <%= params[:city][:name] %>.</p>
 	<% end %>
 <% end %>
+<a href="/weather">Back to Search</a>

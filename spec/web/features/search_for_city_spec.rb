@@ -6,20 +6,19 @@ describe 'Search for city' do
     visit '/weather'
 
     within 'form#city-form' do
-      fill_in 'Name',  with: 'Detroit'
+      fill_in 'city-name',  with: 'Detroit'
 
       click_button 'Check Temperature'
     end
 
-    # current_path.must_equal('/weather/temperature')
-    assert page.has_content?('The current temperature is')
+    assert page.has_selector?('#temp')
   end
 
   it 'finds a duplicate city' do
     visit '/weather'
 
     within 'form#city-form' do
-      fill_in 'Name',  with: 'Portland'
+      fill_in 'city-name',  with: 'Portland'
 
       click_button 'Check Temperature'
     end
@@ -31,7 +30,7 @@ describe 'Search for city' do
     visit '/weather'
 
     within 'form#city-form' do
-      fill_in 'Name',  with: 'adfadfafa'
+      fill_in 'city-name',  with: 'adfadfafa'
 
       click_button 'Check Temperature'
     end

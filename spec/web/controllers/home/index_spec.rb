@@ -6,6 +6,8 @@ describe Web::Controllers::Home::Index do
 
   it 'is successful' do
     response = action.call(params)
-    response[0].must_equal 200
+    
+    response[0].must_equal 302
+    assert_match '/weather', response[1]['Location']
   end
 end

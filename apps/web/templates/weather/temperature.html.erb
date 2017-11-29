@@ -1,1 +1,6 @@
-The current temperature is 79 Degrees Fahrenheit
+<% if result["cod"] == 200 %>
+	<h2 id="temp"><%= result["name"] %> <%= result["main"]["temp"] %> &deg;F</h2>
+<% else %>
+	<h2>Error: <%= result["message"] %></h2>
+<% end %>
+<a href="/weather">Back to Search</a>
